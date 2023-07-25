@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Drawer({ onClose, items }) {
+export default function Drawer({ onClose, onDeleteItem, items }) {
   return (
     <div className="overlay">
       <div className="drawer">
@@ -25,6 +25,7 @@ export default function Drawer({ onClose, items }) {
                 <b>{obj.price}</b>
               </div>
               <img
+                onClick={() => onDeleteItem(obj)}
                 className="removeBtn"
                 src="/img/btn-remove.svg"
                 alt="remove"
