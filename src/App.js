@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Card from "./components/Card";
 import Header from "./components/Header";
 import Drawer from "./components/Drawer";
@@ -10,15 +11,16 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
-    fetch("https://64bd4e7b2320b36433c7980c.mockapi.io/items")
+    axios
+      .get("https://64bd4e7b2320b36433c7980c.mockapi.io/items")
       .then((res) => {
-        return res.json();
-      })
-      .then((json) => {
-        setItems(json);
+        setItems(res.data);
       });
   }, []);
+
   const onAddToCart = (obj) => {
+    axios.post("https://64bd4e7b2320b36433c7980c.mockapi.io/cart", obj);
+
     setCartItems((prev) => [...prev, obj]);
   };
 
